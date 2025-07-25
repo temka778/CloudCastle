@@ -1,0 +1,82 @@
+.marshrut {
+  padding: 5vw 0;
+  text-align: center;
+}
+
+.title {
+  font-size: 2.5vw;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: 1vw;
+}
+
+.subtitle {
+  font-size: 1.2vw;
+  max-width: 60vw;
+  margin: 0 auto 4vw;
+  line-height: 1.5;
+  color: rgb(200, 200, 200);
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 3vw;
+  margin-bottom: 4vw;
+}
+
+.tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5vw;
+  border-radius: 1vw;
+  transition: 0.3s;
+  cursor: pointer;
+  border: 0.3vw solid transparent;
+
+  &:hover {
+    transform: scale(1.03);
+  }
+
+  img {
+    width: 8vw;
+    height: auto;
+    margin-bottom: 1vw;
+  }
+
+  span {
+    font-size: 1.2vw;
+    font-weight: 500;
+  }
+}
+
+.active {
+  border-color: #C2F23C;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2vw;
+  padding: 0 5vw;
+}
+
+.card {
+  background-color: white;
+  color: black;
+  padding: 2vw;
+  border-radius: 1vw;
+  text-align: left;
+
+  h3 {
+    font-size: 1.2vw;
+    font-weight: 600;
+    margin-bottom: 0.7vw;
+  }
+
+  p {
+    font-size: 1vw;
+    font-weight: 400;
+  }
+}
