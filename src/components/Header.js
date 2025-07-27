@@ -1,28 +1,37 @@
+import { useState } from 'react';
 import styles from '@/styles/components/Header.module.scss';
+import scrollToSection from '@/utils/scrollToSection';
 
 export default function Header() {
-  const scrollToTop = (e) => {
-    e.preventDefault();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  const [isOpen, setIsOpen] = useState(false);
 
-    const url = new URL(window.location);
-    url.hash = '';
-    window.history.pushState({}, '', url);
-  };
+  const toggleMenu = () => setIsOpen(!isOpen);
+  const closeMenu = () => setIsOpen(false);
 
   return (
-    <header className={styles.header}>
+    <header className={`${styles.header} header`}>
       <div className={styles.logo}>
-        <a href="/" onClick={scrollToTop}>
+        <a href="/" onClick={(e) => scrollToSection(e, '#', closeMenu)}>
           <img src="/Header/logo.svg" alt="logo" />
         </a>
       </div>
-      <nav className={styles.nav}>
-        <a href="#photo">Что ждёт</a>
-        <a href="#marshrut">Маршрут</a>
-        <a href="#bingo">Бинго</a>
-        <a href="#faq">FAQs</a>
+
+      <nav className={`${styles.nav} ${isOpen ? styles.open : ''}`}>
+        <a href="#photo" onClick={(e) => scrollToSection(e, '#photo', closeMenu)}>Что ждёт</a>
+        <a href="#marshrut" onClick={(e) => scrollToSection(e, '#marshrut', closeMenu)}>Маршрут</a>
+        <a href="#bingo" onClick={(e) => scrollToSection(e, '#bingo', closeMenu)}>Бинго</a>
+        <a href="#faq" onClick={(e) => scrollToSection(e, '#faq', closeMenu)}>FAQs</a>
       </nav>
+
+      <button
+        className={`${styles.burger} ${isOpen ? styles.open : ''}`}
+        onClick={toggleMenu}
+        aria-label="Меню"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </header>
   );
 }

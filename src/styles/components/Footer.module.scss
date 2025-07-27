@@ -1,8 +1,29 @@
+@use '@/styles/utils/functions' as fn;
+@use '@/styles/variables' as *;
+
 .footer {
-  width: 100%;
   text-align: center;
-  color: rgb(194, 242, 60);
+  margin: fn.vwMobile(40) 0 fn.vwMobile(23) 0;
+  color: $color-accent;
   font-weight: 400;
-  font-size: 1.2vw;
-  padding: 2vw 0;
+  font-size: fn.vwMobile(12);
+  line-height: fn.vwMobile(17);
+}
+
+
+@media (min-width: 768px) {
+  .footer {
+    margin: fn.vwTablet(70) 0 fn.vwTablet(50) 0;
+    font-size: fn.vwTablet(12);
+    line-height: fn.vwTablet(17);
+  }
+}
+
+
+@media (min-width: 1440px) {
+  .footer {
+    margin: fn.vw(115) 0 fn.vw(20) 0;
+    font-size: fn.vw(12);
+    line-height: fn.vw(17);
+  }
 }

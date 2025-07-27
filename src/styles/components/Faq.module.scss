@@ -1,35 +1,45 @@
+@use '@/styles/utils/functions' as fn;
+@use '@/styles/variables' as *;
+
 .faq {
-  padding: 5vw 0;
-  width: 100%;
-  text-align: center;
+  margin-top: fn.vwMobile(70);
+  padding: 0 fn.vwMobile(16);
+  text-align: left;
 }
 
 .title {
-  font-size: 2.5vw;
-  margin-bottom: 2vw;
+  font-weight: 500;
+  font-size: fn.vwMobile(28);
+  line-height: fn.vwMobile(27);
+  margin-bottom: fn.vwMobile(20);
 }
 
 .item {
-  margin-bottom: 1vw;
+  min-height: fn.vwMobile(64);
+  margin-bottom: fn.vwMobile(30);
   overflow: hidden;
   transition: all 0.3s ease-in-out;
-  border-bottom: 1px solid rgba(166, 171, 179, 1);
+  border-bottom: fn.vwMobile(1) solid $color-divider;
 }
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5vw 2vw;
   cursor: pointer;
-  font-size: 1.4vw;
-  font-weight: 600;
+  font-weight: 400;
+  font-size: fn.vwMobile(20);
+  line-height: fn.vwMobile(24);
+}
+
+.span {
+  width: fn.vwMobile(263);
 }
 
 .icon {
   transition: transform 0.3s ease;
-  width: 1.3vw;
-  height: 1.3vw;
+  width: fn.vwMobile(24);
+  height: fn.vwMobile(24);
 }
 
 .open {
@@ -40,16 +50,103 @@
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.3s ease;
-  padding: 0 2vw;
 }
 
 .expanded {
-  max-height: 10vw;
-  padding: 1vw 2vw 2vw;
+  max-height: fn.vwMobile(150);
 }
 
 .body p {
-  font-size: 1.1vw;
-  line-height: 1.5;
-  text-align: left;
+  font-weight: 400;
+  font-size: fn.vwMobile(18);
+  line-height: fn.vwMobile(21);
+  width: fn.vwMobile(319);
+  margin: fn.vwMobile(14) 0 fn.vwMobile(25) 0;
+}
+
+
+@media (min-width: 768px) {
+  .faq {
+    margin-top: fn.vwTablet(100);
+    padding: 0 fn.vwTablet(32);
+  }
+
+  .title {
+    font-size: fn.vwTablet(28);
+    line-height: fn.vwTablet(27);
+    margin-bottom: fn.vwTablet(20);
+  }
+
+  .item {
+    min-height: fn.vwTablet(64);
+    padding-top: fn.vwTablet(24);
+    margin-bottom: fn.vwTablet(30);
+    border-bottom: fn.vwTablet(1) solid $color-divider;
+  }
+
+  .header {
+    font-size: fn.vwTablet(20);
+    line-height: fn.vwTablet(24);
+  }
+
+  .span {
+    width: fn.vwTablet(576);
+  }
+
+  .icon {
+    width: fn.vwTablet(24);
+    height: fn.vwTablet(24);
+  }
+
+  .expanded {
+    max-height: fn.vwTablet(150);
+  }
+
+  .body p {
+    font-size: fn.vwTablet(18);
+    line-height: fn.vwTablet(21);
+    margin: fn.vwTablet(14) 0 fn.vwTablet(18) 0;
+  }
+}
+
+
+@media (min-width: 1440px) {
+  .faq {
+    margin-top: fn.vw(145);
+    padding: 0 fn.vw(32);
+  }
+
+  .title {
+    font-size: fn.vw(42);
+    line-height: fn.vw(40);
+    margin-bottom: fn.vw(45);
+    text-align: center;
+  }
+
+  .item {
+    min-height: fn.vw(83);
+    padding-top: fn.vw(24);
+    margin-bottom: fn.vw(30);
+    border-bottom: fn.vw(1) solid $color-divider;
+  }
+
+  .header {
+    font-size: fn.vw(24);
+    line-height: fn.vw(29);
+  }
+
+  .icon {
+    width: fn.vw(24);
+    height: fn.vw(24);
+  }
+
+  .expanded {
+    max-height: fn.vw(150);
+  }
+
+  .body p {
+    font-size: fn.vw(20);
+    line-height: fn.vw(23);
+    margin: fn.vw(26) 0 fn.vw(31) 0;
+  }
 }

@@ -31,7 +31,7 @@ const Faq = () => {
         {faqData.map((item, index) => (
           <div key={index} className={styles.item}>
             <div className={styles.header} onClick={() => toggle(index)}>
-              <span>{item.question}</span>
+              <span className={styles.span}>{item.question}</span>
               <Image
                 src={`/Faq/${activeIndex === index ? 'vector2.svg' : 'vector1.svg'}`}
                 alt="toggle"

@@ -42,7 +42,7 @@ export default function Bingo() {
   return (
     <section className={styles.bingo} id="bingo">
       <h2 className={styles.title}>Открой все карточки<br />и собери свое бинго</h2>
-      <div className={styles.grid}>
+      <div className={styles.cards}>
         {cards.map((card, index) => (
           <div
             key={index}
@@ -51,8 +51,8 @@ export default function Bingo() {
           >
             <div className={styles.inner}>
               <div className={styles.front}>
-                <img src={card.front.image} alt={card.front.title} />
                 <div className={styles.frontText}>{card.front.title}</div>
+                <img src={card.front.image} alt={card.front.title} />
               </div>
               <div className={styles.back}>
                 <div className={styles.backContent}>

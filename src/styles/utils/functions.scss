@@ -1,0 +1,16 @@
+@use 'sass:math';
+
+// px → vw (десктоп)
+@function vw($px, $viewport: 1440) {
+  @return math.div($px, $viewport) * 100vw;
+}
+
+// px → vw (планшет)
+@function vwTablet($px, $viewport: 768) {
+  @return math.div($px, $viewport) * 100vw;
+}
+
+// px → vw (мобильный)
+@function vwMobile($px, $viewport: 375) {
+  @return math.div($px, $viewport) * 100vw;
+}

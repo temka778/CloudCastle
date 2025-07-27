@@ -3,6 +3,10 @@ import styles from '@/styles/components/Frame.module.scss';
 export default function Frame() {
   return (
       <section className={styles.content}>
+        <div className={styles.illustration}>
+          <img  src="/Frame/illustration.svg" alt="illustration" />
+        </div>
+        
         <div className={styles.text}>
           <h1>Плотинка лесная отборная со вкусом подземного ручейка</h1>
           <p>
@@ -14,12 +18,6 @@ export default function Frame() {
             С этого места началось всё строительство города. Одновременно стали возводить крепость, 
             защищающую будущий завод от набегов башкир, на чьих землях он и строился.
           </p>
-        </div>
-
-        <div className={styles.image}>
-          <div className={styles.illustration}>
-            <img  src="/Frame/illustration.svg" alt="illustration" />
-          </div>
         </div>
       </section>
   );

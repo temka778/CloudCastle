@@ -1,75 +1,100 @@
+@use '@/styles/utils/functions' as fn;
+@use '@/styles/variables' as *;
+
 .content {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
+  padding: 0 fn.vwMobile(16);
+  gap: fn.vwMobile(20);
 }
 
+.illustration img {
+    width: 100%;
+  }
+
 .text {
-  flex: 0 0 40%;
-  padding-right: 4vw;
+  display: grid;
+  align-items: flex-start;
+  gap: fn.vwMobile(30);
 
   h1 {
     font-weight: 500;
-    font-size: 3.2vw;
-    line-height: 95%;
-    margin-bottom: 2vw;
+    font-size: fn.vwMobile(32);
+    line-height: fn.vwMobile(30);
   }
 
   p {
-    font-size: 1.2vw;
-    margin-bottom: 0;
-    color: rgb(200, 200, 200);
+    font-weight: 400;
+    font-size: fn.vwMobile(18);
+    line-height: fn.vwMobile(21);
   }
 }
 
-.image {
-  flex: 0 0 60%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 
-  .illustration {
-    position: relative;
-    aspect-ratio: 694 / 618;
-    width: 45vw;
-    
-
-    img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-  }
-}
-
-@media (max-width: 767px) {
+@media (min-width: 768px) {
   .content {
-    flex-direction: column;
-    gap: 4vh;
+    position: relative;
+    height: fn.vwTablet(494);
   }
 
   .text {
-    flex: 0 0 auto;
-    padding-right: 0;
-    order: 2;
-
+    order: 1;
+    gap: fn.vwTablet(30);
+    position: absolute;
+    left: fn.vwTablet(32);
+    top: fn.vwTablet(70);
+  
     h1 {
-      font-size: 4.5vh;
-      margin-bottom: 3vh;
+      width: fn.vwTablet(440);
+      font-size: fn.vwTablet(38);
+      line-height: fn.vwTablet(36);
     }
-
+  
     p {
-      font-size: 2.2vh;
+      width: fn.vwTablet(440);
+      font-size: fn.vwTablet(18);
+      line-height: fn.vwTablet(21);
     }
   }
 
-  .image {
-    flex: 0 0 auto;
-    justify-content: center;
-    order: 1;
+  .illustration {
+    order: 2;
+    position: absolute;
+    width: fn.vwTablet(280);
+    right: fn.vwTablet(32);
+  }
+}
 
-    .illustration {
-      width: 100%;
+
+@media (min-width: 1440px) {
+  .content {
+    flex-direction: row;
+    height: fn.vw(686);
+    padding: 0 fn.vw(32);
+  }
+
+  .text {
+    order: 1;
+    left: fn.vw(32);
+    gap: fn.vw(30);
+  
+    h1 {
+      width: fn.vw(605.73);
+      font-size: fn.vw(54);
+      line-height: fn.vw(51);
     }
+  
+    p {
+      width: fn.vw(520.68);
+      font-size: fn.vw(20);
+      line-height: fn.vw(23);
+    }
+  }
+
+  .illustration {
+    order: 2;
+    width: fn.vw(694);
+    left: fn.vw(668);
   }
 }

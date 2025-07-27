@@ -1,9 +1,10 @@
-@use './variables' as *;
+@use '@/styles/variables' as *;
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  -webkit-tap-highlight-color: transparent;
 }
 
 html {
@@ -12,15 +13,8 @@ html {
 
 body {
   font-family: 'Roboto', sans-serif;
-  background-color: rgb(40, 40, 40);
-  color: rgb(255, 255, 255);
+  background-color: $color-bg;
+  color: $color-text;
   overflow-x: hidden;
-  padding: 0 2vw;
-}
-
-@media (max-width: 767px) {
-  body {
-    padding: 0 1vh;
-    width: fit-content;
-  }
+  overflow-y: scroll;
 }

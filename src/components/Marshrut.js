@@ -23,7 +23,7 @@ export default function Marshrut() {
 
   return (
     <section className={styles.marshrut} id="marshrut">
-      <h2 className={styles.title}>В первый день вас ждет<br />интересный маршрут</h2>
+      <h2 className={styles.title}>В первый день вас ждёт<br />интересный маршрут</h2>
       <p className={styles.subtitle}>
         Международный аэропорт Екатеринбурга обслуживает как сам Екатеринбург,
         так прилежащие к нему районы Свердловской области.
