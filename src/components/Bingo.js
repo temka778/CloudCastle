@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import styles from '@/styles/components/Bingo.module.scss';
 
 export default function Bingo() {
@@ -52,7 +53,11 @@ export default function Bingo() {
             <div className={styles.inner}>
               <div className={styles.front}>
                 <div className={styles.frontText}>{card.front.title}</div>
-                <img src={card.front.image} alt={card.front.title} />
+                <Image
+                  src={card.front.image}
+                  alt={card.front.title}
+                  fill
+                />
               </div>
               <div className={styles.back}>
                 <div className={styles.backContent}>

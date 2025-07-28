@@ -2,26 +2,27 @@ export default function scrollToSection(e, id, closeMenu = () => {}) {
   e.preventDefault();
   closeMenu();
 
+  const url = new URL(window.location.href);
+
   if (id === '#') {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    const url = new URL(window.location);
     url.hash = '';
     window.history.pushState({}, '', url);
     return;
   }
 
+  if (!id.startsWith('#') || id.length < 2) return;
+
   const target = document.querySelector(id);
+  if (!target) return;
+
   const header = document.querySelector('.header');
-  const headerHeight = header?.offsetHeight || 0;
+  const headerHeight = header?.getBoundingClientRect().height || 0;
 
-  if (target) {
-    const elementTop = target.getBoundingClientRect().top + window.scrollY;
-    const offsetTop = elementTop - headerHeight;
+  const top = target.getBoundingClientRect().top + window.scrollY - headerHeight;
 
-    window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+  window.scrollTo({ top, behavior: 'smooth' });
 
-    const url = new URL(window.location);
-    url.hash = id.replace('#', '');
-    window.history.pushState({}, '', url);
-  }
+  url.hash = id.slice(1);
+  window.history.pushState({}, '', url);
 }

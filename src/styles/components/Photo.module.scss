@@ -13,11 +13,12 @@
   line-height: fn.vwMobile(27);
 }
 
-.image {
+.imageWrapper {
   height: fn.vwMobile(182);
   width: 100%;
   border-radius: fn.vwMobile(16);
   margin: fn.vwMobile(20) 0 fn.vwMobile(18) 0;
+  overflow: hidden;
 }
 
 .caption {
@@ -37,7 +38,7 @@
     font-size: fn.vwTablet(28);
   }
 
-  .image {
+  .imageWrapper {
     height: fn.vwTablet(374);
     border-radius: fn.vwTablet(16);
     margin: fn.vwTablet(20) 0 fn.vwTablet(18) 0;
@@ -62,7 +63,7 @@
     font-size: fn.vw(42);
   }
 
-  .image {
+  .imageWrapper {
     height: fn.vw(616);
     border-radius: fn.vw(16);
     margin: fn.vw(40) 0 fn.vw(32) 0;

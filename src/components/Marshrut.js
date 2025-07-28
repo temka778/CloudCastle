@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import styles from '@/styles/components/Marshrut.module.scss';
 
 export default function Marshrut() {
@@ -23,7 +24,9 @@ export default function Marshrut() {
 
   return (
     <section className={styles.marshrut} id="marshrut">
-      <h2 className={styles.title}>В первый день вас ждёт<br />интересный маршрут</h2>
+      <h2 className={styles.title}>
+        В первый день вас ждёт<br />интересный маршрут
+      </h2>
       <p className={styles.subtitle}>
         Международный аэропорт Екатеринбурга обслуживает как сам Екатеринбург,
         так прилежащие к нему районы Свердловской области.
@@ -36,7 +39,12 @@ export default function Marshrut() {
             className={`${styles.tab} ${activeTab === index ? styles.active : ''}`}
             onClick={() => setActiveTab(index)}
           >
-            <img src={tab.img} alt={`Tab ${index + 1}`} />
+            <Image
+              src={tab.img}
+              alt={`Иконка для "${tab.text}"`}
+              width={300}
+              height={200}
+            />
             <span>{tab.text}</span>
           </div>
         ))}
