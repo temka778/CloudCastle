@@ -3,7 +3,7 @@ import styles from '@/styles/components/Frame.module.scss';
 
 export default function Frame() {
   return (
-    <section className={styles.content}>
+    <section className={styles.content} id="home">
       <div className={styles.illustration}>
         <Image
           src="/Frame/illustration.svg"

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import styles from '@/styles/components/Header.module.scss';
@@ -9,6 +9,18 @@ export default function Header() {
 
   const toggleMenu = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(false);
+
+  useEffect(() => {
+  if (isOpen) {
+    document.body.classList.add('no-scroll');
+  } else {
+    document.body.classList.remove('no-scroll');
+  }
+
+  return () => {
+    document.body.classList.remove('no-scroll');
+    };
+  }, [isOpen]);
 
   return (
     <header className={`${styles.header} header`}>
@@ -40,6 +52,12 @@ export default function Header() {
         <span></span>
         <span></span>
       </button>
+
+      <div
+        className={`${styles.overlay} ${isOpen ? styles.visible : ''}`}
+        onClick={closeMenu}
+      />
+
     </header>
   );
 }
