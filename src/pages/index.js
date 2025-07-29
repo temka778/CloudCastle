@@ -23,6 +23,7 @@ export default function Home() {
       <Head>
         <title>Cloud Castle</title>
         <meta name="description" content="Тестовое задание для Cloud Castle. Выполнил Артём Курочкин!" />
+        <meta property="og:site_name" content="Тестовое задание!" /> .
         <meta property="og:title" content="Cloud Castle" />
         <meta property="og:description" content="Тестовое задание для Cloud Castle. Выполнил Артём Курочкин!" />
         <meta property="og:image" content="/preview.jpg" />
