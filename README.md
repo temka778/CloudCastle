@@ -31,49 +31,81 @@
 - **Nginx** – Веб-сервер для обработки запросов и настройки HTTPS с редиректами.
 
 ## Инструкции по развёртыванию
-Следуйте этим шагам для клонирования, сборки и запуска проекта с использованием Docker и настройки Nginx для продакшен-среды.
+Ниже представлены два подхода к развертыванию проекта: **быстрый запуск** с использованием готового образа из Docker Hub и **ручной запуск** с установкой зависимостей через Node.js. Также описана настройка Nginx для продакшен-среды.
 
 ### Предварительные требования
-- Убедитесь, что **Docker**, **Docker Compose** и **Nginx** установлены на вашей системе.
-- Установлен Git-клиент для клонирования репозитория.
-- Получены SSL-сертификаты (например, через Certbot) для домена `cloudcastle.это-хобби.рф`.
+- Для **быстрого запуска**: Установлены **Docker** и **Docker Compose**.
+- Для **ручного запуска**: Установлены **Node.js** (рекомендуемая версия 18.x или выше), **npm** и **Git**.
+- Для продакшен-среды: Установлен **Nginx** и получены SSL-сертификаты (например, через Certbot) для домена `cloudcastle.это-хобби.рф`.
 
-### Пошаговое развертывание
-1. **Обновление системных пакетов** (для систем на базе Ubuntu):
+### Быстрый запуск (Docker Hub)
+1. **Установка Docker и Docker Compose** (для систем на базе Ubuntu):
    ```bash
    sudo apt update
-   sudo apt install docker.io docker-compose nginx -y
-   ```
-
-2. **Активация службы Docker**:
-   ```bash
+   sudo apt install docker.io docker-compose -y
    sudo systemctl enable docker
-   ```
-
-3. **Добавление пользователя в группу Docker** (для запуска Docker без sudo):
-   ```bash
    sudo usermod -aG docker $USER
    ```
-   Выйдите из системы и войдите снова, чтобы изменения вступили в силу.
+   Выйдите из системы и войдите снова, чтобы изменения группы вступили в силу.
 
-4. **Клонирование репозитория**:
+2. **Загрузка образа из Docker Hub**:
    ```bash
-   git clone git@github.com:temka778/CloudCastle.git
+   docker pull temka778/cloudcastle
    ```
 
-5. **Переход в директорию проекта**:
+3. **Создание файла `docker-compose.yml`**:
+   Создайте файл `docker-compose.yml` в любой директории с следующим содержимым:
+   ```yaml
+   services:
+     app:
+       image: temka778/cloudcastle
+       ports:
+         - "3000:3000"
+       environment:
+         - NODE_ENV=production
+   ```
+
+4. **Запуск контейнера**:
    ```bash
+   docker-compose up -d
+   ```
+
+5. **Доступ к приложению**:
+   - Приложение будет доступно по адресу `http://localhost:3000`.
+   - Перейдите к разделу **Настройка Nginx** для продакшен-развертывания с HTTPS.
+
+### Ручной запуск (Node.js)
+1. **Установка Node.js** (для систем на базе Ubuntu):
+   ```bash
+   sudo apt update
+   curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+   sudo apt install -y nodejs
+   ```
+
+2. **Клонирование репозитория**:
+   ```bash
+   git clone git@github.com:temka778/CloudCastle.git
    cd CloudCastle/
    ```
 
-6. **Сборка и запуск с помощью Docker Compose**:
+3. **Установка зависимостей**:
    ```bash
-   docker-compose up --build
+   npm install
    ```
 
-7. **Доступ к приложению**:
-   - Приложение будет доступно по адресу `http://localhost:3000` (или порту, указанному в `docker-compose.yml`).
-   - Убедитесь, что файлы `Dockerfile` и `docker-compose.yml` в корне проекта настроены корректно.
+4. **Сборка проекта**:
+   ```bash
+   npm run build
+   ```
+
+5. **Запуск приложения**:
+   ```bash
+   npm start
+   ```
+
+6. **Доступ к приложению**:
+   - Приложение будет доступно по адресу `http://localhost:3000`.
+   - Перейдите к разделу **Настройка Nginx** для продакшен-развертывания с HTTPS.
 
 ### Настройка Nginx
 Для продакшен-развертывания с использованием HTTPS и редиректов с `http://cloudcastle.это-хобби.рф`, `http://www.cloudcastle.это-хобби.рф`, `https://www.cloudcastle.это-хобби.рф` на `https://cloudcastle.это-хобби.рф`, выполните следующие шаги:
@@ -91,7 +123,6 @@
 
 3. **Создание конфигурационного файла Nginx**:
    Создайте файл `/etc/nginx/sites-available/cloudcastle.это-хобби.рф` и добавьте следующий код:
-
    ```nginx
    server {
        if ($host = www.cloudcastle.xn----btba2a0abz0a2e.xn--p1ai) {
@@ -158,8 +189,9 @@
    - Все запросы с `http://cloudcastle.это-хобби.рф`, `http://www.cloudcastle.это-хобби.рф` и `https://www.cloudcastle.это-хобби.рф` будут перенаправлены на `https://cloudcastle.это-хобби.рф`.
 
 ### Примечания
-- Проект включает предварительно настроенные файлы `Dockerfile` и `docker-compose.yml` для удобного развертывания.
-- Для продакшен-среды убедитесь, что переменные окружения (например, `NODE_ENV`) корректно заданы в `docker-compose.yml`.
+- Готовый образ доступен на [Docker Hub](https://hub.docker.com/repository/docker/temka778/cloudcastle/general) для быстрого развёртывания.
+- Для ручного запуска убедитесь, что версия Node.js совместима с зависимостями проекта (рекомендуется 18.x).
+- Для продакшен-среды задайте переменные окружения (например, `NODE_ENV=production`) в `docker-compose.yml` или `.env`.
 - Регулярно обновляйте SSL-сертификаты с помощью `sudo certbot renew`.
 
 ## Проекты
