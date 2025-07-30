@@ -4,7 +4,7 @@ import styles from '@/styles/components/Photo.module.scss';
 export default function Photo() {
   return (
     <section className={styles.content} id="photo">
-      <h2 className={styles.title}>Что ждёт меня на пути?</h2>
+      <h2 className={styles.title}>Что ждёт за плотинкой</h2>
       <div className={styles.imageWrapper}>
         <Image
           src="/Photo/image.png"
