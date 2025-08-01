@@ -83,8 +83,7 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(2px);
+  background-color: rgba(0, 0, 0, 0.6);
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s ease;
@@ -139,7 +138,7 @@
     position: fixed;
     top: 0;
     right: -100%;
-    height: 90vh;
+    height: 100vh;
     width: fn.vwTablet(400);
     background-color: $color-bg;
     flex-direction: column;
@@ -202,6 +201,7 @@
 
     a {
       font-size: fn.vwMobile(18);
+      line-height: fn.vwMobile(21);
     }
   }
 }

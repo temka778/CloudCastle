@@ -8,7 +8,7 @@ const faqData = [
     answer: 'Процесс поиска неструктурированной документальной информации, удовлетворяющей информационные потребности пользователя.',
   },
   {
-    question: 'Понравится ли ребятам из Cloud Castle моя  работа?',
+    question: 'Понравится ли ребятам из Cloud Castle моя работа?',
     answer: 'Конечно! Я уверен, что моя работа будет высоко оценена командой Cloud Castle. Я стремлюсь к качеству и инновациям, что идеально соответствует их стандартам.',
   },
   {
@@ -28,27 +28,42 @@ const Faq = () => {
     <section className={styles.faq} id="faq">
       <h2 className={styles.title}>Ещё вопросы?</h2>
       <div className={styles.accordion}>
-        {faqData.map((item, index) => (
-          <div key={index} className={styles.item}>
-            <div className={styles.header} onClick={() => toggle(index)}>
-              <span className={styles.span}>{item.question}</span>
-              <Image
-                src={`/Faq/${activeIndex === index ? 'vector2.svg' : 'vector1.svg'}`}
-                alt="toggle"
-                width={16}
-                height={16}
-                className={`${styles.icon} ${activeIndex === index ? styles.open : ''}`}
-              />
+        {faqData.map((item, index) => {
+          const isOpen = activeIndex === index;
+          return (
+            <div key={index} className={styles.item}>
+              <div
+                className={styles.header}
+                onClick={() => toggle(index)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggle(index);
+                  }
+                }}
+                role="button"
+                tabIndex={0}
+                aria-expanded={isOpen}
+                aria-controls={`faq-body-${index}`}
+              >
+                <span className={styles.span}>{item.question}</span>
+                <Image
+                  src="/Faq/vector.svg"
+                  alt="toggle"
+                  width={16}
+                  height={16}
+                  className={`${styles.icon} ${isOpen ? styles.open : ''}`}
+                />
+              </div>
+              <div
+                id={`faq-body-${index}`}
+                className={`${styles.body} ${isOpen ? styles.expanded : ''}`}
+              >
+                <p>{item.answer}</p>
+              </div>
             </div>
-            <div
-              className={`${styles.body} ${
-                activeIndex === index ? styles.expanded : ''
-              }`}
-            >
-              <p>{item.answer}</p>
-            </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </section>
   );
