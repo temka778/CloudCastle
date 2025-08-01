@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import { onKeyDownEnterOrSpace } from '@/utils/keyboard';
 import styles from '@/styles/components/Marshrut.module.scss';
 
 export default function Marshrut() {
@@ -40,13 +41,6 @@ export default function Marshrut() {
     ],
   ];
 
-  const handleKeyDown = (e, index) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      setActiveTab(index);
-    }
-  };
-
   return (
     <section className={styles.marshrut} id="marshrut">
       <h2 className={styles.title}>
@@ -65,7 +59,7 @@ export default function Marshrut() {
             role="button"
             tabIndex={0}
             onClick={() => setActiveTab(index)}
-            onKeyDown={(e) => handleKeyDown(e, index)}
+            onKeyDown={onKeyDownEnterOrSpace(() => setActiveTab(index))}
             aria-pressed={activeTab === index}
           >
             <Image

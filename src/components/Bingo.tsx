@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import { onKeyDownEnterOrSpace } from '@/utils/keyboard';
 import styles from '@/styles/components/Bingo.module.scss';
 
 export default function Bingo() {
@@ -34,21 +35,30 @@ export default function Bingo() {
 
   const [flipped, setFlipped] = useState(Array(cards.length).fill(false));
 
-  const toggleFlip = (index) => {
-    const newFlipped = [...flipped];
-    newFlipped[index] = !newFlipped[index];
-    setFlipped(newFlipped);
+  const toggleFlip = (index: number) => {
+    setFlipped((prev) => {
+      const updated = [...prev];
+      updated[index] = !updated[index];
+      return updated;
+    });
   };
 
   return (
     <section className={styles.bingo} id="bingo">
-      <h2 className={styles.title}>Открой все карточки<br />и собери свое бинго</h2>
+      <h2 className={styles.title}>
+        Открой все карточки<br />и собери свое бинго
+      </h2>
       <div className={styles.cards}>
         {cards.map((card, index) => (
           <div
             key={index}
             className={`${styles.card} ${flipped[index] ? styles.flipped : ''}`}
             onClick={() => toggleFlip(index)}
+            onKeyDown={onKeyDownEnterOrSpace(() => toggleFlip(index))}
+            role="button"
+            tabIndex={0}
+            aria-pressed={flipped[index]}
+            aria-label={`Карточка ${card.front.title}`}
           >
             <div className={styles.inner}>
               <div className={styles.front}>

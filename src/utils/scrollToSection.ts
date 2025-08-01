@@ -1,4 +1,8 @@
-export default function scrollToSection(e, id, closeMenu = () => {}) {
+export default function scrollToSection(
+  e: React.MouseEvent<HTMLElement>,
+  id: string,
+  closeMenu: () => void = () => {}
+): void {
   e.preventDefault();
   closeMenu();
 
@@ -13,10 +17,10 @@ export default function scrollToSection(e, id, closeMenu = () => {}) {
 
   if (!id.startsWith('#') || id.length < 2) return;
 
-  const target = document.querySelector(id);
+  const target = document.querySelector<HTMLElement>(id);
   if (!target) return;
 
-  const header = document.querySelector('.header');
+  const header = document.querySelector<HTMLElement>('.header');
   const headerHeight = header?.getBoundingClientRect().height || 0;
 
   const top = target.getBoundingClientRect().top + window.scrollY - headerHeight;

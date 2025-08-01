@@ -1,8 +1,16 @@
+'use client';
+
 import React, { useState } from 'react';
 import styles from '@/styles/components/Faq.module.scss';
 import Image from 'next/image';
+import { onKeyDownEnterOrSpace } from '@/utils/keyboard';
 
-const faqData = [
+type FaqItem = {
+  question: string;
+  answer: string;
+};
+
+const faqData: FaqItem[] = [
   {
     question: 'Что такое современный поиск?',
     answer: 'Процесс поиска неструктурированной документальной информации, удовлетворяющей информационные потребности пользователя.',
@@ -17,11 +25,11 @@ const faqData = [
   },
 ];
 
-const Faq = () => {
-  const [activeIndex, setActiveIndex] = useState(null);
+const Faq: React.FC = () => {
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
-  const toggle = (index) => {
-    setActiveIndex(activeIndex === index ? null : index);
+  const toggle = (index: number) => {
+    setActiveIndex((prev) => (prev === index ? null : index));
   };
 
   return (
@@ -30,17 +38,13 @@ const Faq = () => {
       <div className={styles.accordion}>
         {faqData.map((item, index) => {
           const isOpen = activeIndex === index;
+
           return (
             <div key={index} className={styles.item}>
               <div
                 className={styles.header}
                 onClick={() => toggle(index)}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    toggle(index);
-                  }
-                }}
+                onKeyDown={onKeyDownEnterOrSpace(() => toggle(index))}
                 role="button"
                 tabIndex={0}
                 aria-expanded={isOpen}

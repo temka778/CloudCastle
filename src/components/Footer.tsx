@@ -1,6 +1,6 @@
 import styles from '@/styles/components/Footer.module.scss';
 
-export default function Footer() {
+const Footer: React.FC = () => {
   const year = new Date().getFullYear();
 
   return (
@@ -8,4 +8,6 @@ export default function Footer() {
       © {year} CLOUD CASTLE
     </footer>
   );
-}
+};
+
+export default Footer;
